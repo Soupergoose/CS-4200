@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Nov 10 15:20:13 2020
-
-@author: mike
 """
 
 import tensorflow as tf, pandas as pd, numpy as np, matplotlib.pyplot as plt
@@ -90,7 +88,7 @@ model.compile(optimizer = 'adam', loss = 'huber_loss', metrics='mean_absolute_er
 #%% Train the model
 
 #Create tensorboard log files
-logdir="/home/mike/Desktop/LSTM" + datetime.now().strftime("%Y%m%d")
+logdir="/home/****/Desktop/LSTM" + datetime.now().strftime("%Y%m%d")
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir)
 
 # Measuring the time taken by the model to train
