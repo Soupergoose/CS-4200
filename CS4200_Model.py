@@ -19,7 +19,7 @@ batchsize = 10
 start_date = datetime(2017,1,1)
 end_date = datetime(2020,11,30)
 epoch=20
-log_dir= "/home/mike/Desktop/LSTM"
+log_dir= "/home/****/Desktop/LSTM"
 
 #%% Import data and add necessary columns
 
