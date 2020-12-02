@@ -19,22 +19,12 @@ batchsize = 10
 start_date = datetime(2017,1,1)
 end_date = datetime(2020,11,30)
 epoch=20
+ticker='AMZN'
 log_dir= "/home/mike/Desktop/LSTM"
 
-#%% Import data and add necessary columns
+#%% Import , prepare, and split data
 
-def fetch_data(ticker, start, end):
-    #Fetches the pricing data of ticker from yahoo 
-    try:
-        df=pdr.DataReader(ticker, 'yahoo', start, end)
-        df.to_csv(f'stock_details/{ticker}.csv')
-    except:
-        print("Error")
-    return df
-  
-rawdata=fetch_data('AMZN',start_date, end_date)
-
-#%% Prepare data for split/training
+rawdata=pdr.DataReader(ticker, 'yahoo', start_date, end_date)
 
 #Feature scaling, one scaler per column
 column_scalers={}
@@ -91,13 +81,11 @@ model.compile(optimizer = 'adam', loss = 'mse', metrics='mean_absolute_error')
 #%% Train the model
 
 #Create tensorboard log files
-<<<<<<< HEAD
+
 logdir=log_dir + datetime.now().strftime("%Y%m%d")
 try: shutil.rmtree(logdir)
 except: pass
-=======
 logdir="/home/****/Desktop/LSTM" + datetime.now().strftime("%Y%m%d")
->>>>>>> d4758dd8da42d41086e98610747eb306b3b0de04
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir)
 
 # Measuring the time taken by the model to train
@@ -145,9 +133,7 @@ plt.show()
 
 # Generating predictions on full data
 x_predictions=column_scalers['Adj Close'].inverse_transform(model.predict(x_data))
-#TestPredictions=column_scalers['Adj Close'].inverse_transform(model.predict(x_test))
- 
-#FullDataPredictions=np.append(TrainPredictions, TestPredictions)
+
 y_actual=column_scalers['Adj Close'].inverse_transform(y_data)
  
 # plotting the full data
@@ -186,5 +172,5 @@ print('Gradient Accuracy (all data): ', round(grad_acc,3))
 print('Gradient Accuracy (test data): ', round(grad_acc_test,3))
 print('Tomorrows Price: ', round(tomorrow_price,2))
 
-print(rawdata['Adj Close'].head(10), x_predictions[0:10])
+#print(rawdata['Adj Close'].head(10), x_predictions[0:10])
 
