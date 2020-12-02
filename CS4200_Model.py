@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Nov 10 15:20:13 2020
-
-@author: mike
 """
 
 import tensorflow as tf, pandas as pd, numpy as np, matplotlib.pyplot as plt
@@ -93,9 +91,13 @@ model.compile(optimizer = 'adam', loss = 'mse', metrics='mean_absolute_error')
 #%% Train the model
 
 #Create tensorboard log files
+<<<<<<< HEAD
 logdir=log_dir + datetime.now().strftime("%Y%m%d")
 try: shutil.rmtree(logdir)
 except: pass
+=======
+logdir="/home/****/Desktop/LSTM" + datetime.now().strftime("%Y%m%d")
+>>>>>>> d4758dd8da42d41086e98610747eb306b3b0de04
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir)
 
 # Measuring the time taken by the model to train
